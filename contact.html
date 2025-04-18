@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Interactive Calendar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      cursor: none;
+    }
+    .cursor-dot {
+      width: 10px;
+      height: 10px;
+      background-color: blue;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+    .cursor-outline {
+      width: 30px;
+      height: 30px;
+      border: 2px solid blue;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9998;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-outline" class="cursor-outline"></div>
+
+  <header class="bg-blue-600 text-white py-4 text-center">
+    <h1 class="text-3xl font-bold">Contact Us</h1>
+  </header>
+
+  <div class="container mx-auto p-6 max-w-3xl bg-white shadow-lg rounded-lg mt-6">
+    <h2 class="text-2xl font-bold text-gray-800">Get in Touch</h2>
+    <p class="mt-2 text-gray-600">Have questions or need assistance? Feel free to reach out to us.</p>
+    
+    <!-- ✅ Updated form to connect with backend -->
+    <!-- <form class="mt-6 space-y-4" action="submit_contact.php" method="POST"> -->
+      <form class="mt-6 space-y-4" action="contact_process.php" method="POST">
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Your Name</label>
+        <input type="text" name="name" class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Himanshu.." required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Your Email</label>
+        <input type="email" name="email" class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300" placeholder="example@gmail.com" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Message</label>
+        <textarea name="message" class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Write your message here..." rows="4" required></textarea>
+      </div>
+      <button type="submit" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Send Message</button>
+    </form>
+
+    <div class="mt-6 text-gray-700 font-bold">
+      <p><strong>Email:</strong> support@timemanagment.com</p>
+      <p><strong>Phone:</strong> +91 7999617339</p>
+      <p><strong>Address:</strong> GAMER STREET, PUNBAJ City, INDIA</p>
+    </div>
+
+    <div class="text-center text-1xl font-bold border bg-slate-200">
+      <a href="introduction.php"> ← Back </a>
+    </div>
+  </div>
+
+  <script>
+    const cursorDot = document.querySelector('#cursor-dot');
+    const cursorOutline = document.querySelector('#cursor-outline');
+
+    document.addEventListener('mousemove', (e) => {
+      gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.01 });
+      gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.2, ease: "power2.out" });
+    });
+  </script>
+</body>
+</html>

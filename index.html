@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-[url('https://c4.wallpaperflare.com/wallpaper/914/930/349/lightbeam-wallpaper-preview.jpg')] bg-cover ">
+
+  <div class="flex shadow-lg rounded-xl overflow-hidden md:mb-0 hover:scale-105 transition-transform duration-300">
+    <!-- Login Form -->
+    <div class="w-full max-w-sm p-6 bg-white rounded-tl-xl rounded-bl-xl">
+      <h2 class="text-2xl font-bold text-center text-gray-700">Login</h2>
+      <form class="mt-4" action="login.php" method="POST">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" name="email" class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Enter your email" required>
+        </div>
+        <div class="mt-4">
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" name="password" class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Login</button>
+      </form>
+      <p class="mt-4 text-sm text-center text-gray-600">
+        Don't have an account? <a href="signup.html" class="text-blue-600 hover:underline">Sign up</a>
+      </p>
+    </div>
+
+    <!-- Image Section -->
+    <div class="w-full max-w-sm p-6 bg-white rounded-tr-xl rounded-br-xl">
+      <img class="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/2931246/pexels-photo-2931246.jpeg?cs=srgb&dl=pexels-adrien-olichon-1257089-2931246.jpg&fm=jpg" alt="Login Image">
+    </div>
+  </div>
+
+</body>
+</html>

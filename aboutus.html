@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Interactive Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      
+        body {
+            cursor: none;
+        }
+        .cursor-dot {
+            width: 10px;
+            height: 10px;
+            background-color: red; 
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+        .cursor-outline {
+            width: 30px;
+            height: 30px;
+            border: 2px solid pink;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    
+    <div id="cursor-dot" class="cursor-dot"></div>
+    <div id="cursor-outline" class="cursor-outline"></div>
+    
+    <header class="bg-red-400 text-white py-4 text-center">
+        <h1 class="text-3xl font-bold">About Us</h1>
+    </header>
+    <div class="bg-[url(https://media.istockphoto.com/id/666355590/photo/silhouette-about-us-word.jpg?s=612x612&w=0&k=20&c=7vJ_zEJFaC9I90qtMl5qy7fcJSz1vVHDhyRl55dsH6s=)] bg-cover bg-opacity bg-no-repeat ">
+    <div class="container mx-auto p-6 max-w-2xl bg-white shadow-lg  mt-38">
+        <h2 class="text-2xl font-bold text-gray-800">Welcome to Interactive Calendar</h2>
+        <p class="mt-2 text-gray-600">An Interactive Calendar with Event Management is designed to help users create, manage, and share events effortlessly. Our system ensures smooth scheduling with real-time updates, notifications, and reminders.</p>
+        
+        <h3 class="text-xl font-semibold text-gray-800 mt-4">Our Mission</h3>
+        <p class="text-gray-600">We aim to simplify event planning by providing an intuitive platform where users can organize their schedules seamlessly. Whether it's personal planning, team meetings, or public events, our system ensures you never miss an important moment.</p>
+        
+        <h3 class="text-xl font-semibold text-gray-800 mt-4">Key Features</h3>
+        <ul class="list-disc list-inside text-gray-600 mt-2">
+            <li>Easy event creation and management</li>
+            <li>Automated reminders and notifications</li>
+            <li>Event sharing with friends, family, or colleagues</li>
+            <li>Seamless updates and real-time collaboration</li>
+        </ul>
+        
+        <h3 class="text-xl font-semibold text-gray-800 mt-4">Why Choose Us?</h3>
+        <p class="text-gray-600">We prioritize user experience, security, and reliability, ensuring a hassle-free and efficient event management system tailored to your needs.</p>
+        
+        <p class="mt-6 text-center text-gray-700">Join us in making scheduling simpler and more interactive!</p>
+        <div class="text-center text-1xl font-bold border bg-slate-200 "><a href="introduction.php"> ← Back </a> </div>
+        <script>
+            const cursorDot = document.querySelector('#cursor-dot');
+            const cursorOutline = document.querySelector('#cursor-outline');
+    
+            document.addEventListener('mousemove', (e) => {
+    
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.01 });
+    
+                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.2, ease: "power2.out" });
+            });
+        </script>
+    </div>
+    </div>

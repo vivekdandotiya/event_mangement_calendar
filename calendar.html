@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Event Calendar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+</head>
+<body class="bg-gray-100 p-6 max-w-6xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4 text-center">Event Calendar</h1>
+
+  <!-- Event Form -->
+  <div class="bg-white shadow-lg p-6 rounded-2xl mb-6">
+    <form action="save_events.php" method="POST">
+
+      <input type="date" name="eventDate" class="w-full p-2 border rounded-md mb-2" required>
+      <input type="text" name="eventTitle" placeholder="Event Title" class="w-full p-2 border rounded-md mb-2" required>
+      <textarea name="eventDescription" placeholder="Event Description" class="w-full p-2 border rounded-md mb-2"></textarea>
+      <input type="datetime-local" name="reminderTime" class="w-full p-2 border rounded-md mb-2">
+      <button type="submit" class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600">Add Event</button>
+    </form>
+  </div>
+
+  <!-- FullCalendar Display -->
+  <div class="bg-white shadow-lg p-4 rounded-2xl mb-6">
+    <div id="calendar"></div>
+  </div>
+
+  <!-- Event Table -->
+  <div class="bg-white shadow-lg p-6 rounded-2xl">
+    <h2 class="text-2xl font-bold mb-4">All Events</h2>
+    <table class="w-full table-auto border-collapse">
+      <thead>
+        <tr class="bg-gray-200 text-left">
+          <th class="border px-4 py-2">Date</th>
+          <th class="border px-4 py-2">Title</th>
+          <th class="border px-4 py-2">Description</th>
+          <th class="border px-4 py-2">Reminder</th>
+        </tr>
+      </thead>
+      <tbody id="eventsTableBody">
+        <!-- Events will be loaded here dynamically -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: 'fetch_events.php'
+      });
+      calendar.render();
+
+      // Fetch events for the table
+      fetch('fetch_events.php')
+        .then(response => response.json())
+        .then(data => {
+          const tbody = document.getElementById('eventsTableBody');
+          data.forEach(event => {
+            const row = `<tr>
+              <td class="border px-4 py-2">${event.start}</td>
+              <td class="border px-4 py-2">${event.title}</td>
+              <td class="border px-4 py-2">${event.description || ''}</td>
+              <td class="border px-4 py-2">${event.reminder_time || ''}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          });
+        });
+    });
+  </script>
+</body>
+</html>
